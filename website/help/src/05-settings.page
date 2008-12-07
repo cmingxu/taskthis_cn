@@ -1,0 +1,11 @@
+---
+title: Settings
+inMenu: true
+orderInfo: 5
+---
+h1. Settings
+
+* F/X Animation
+* Show 'Add Task' form by default
+* Show notes by default
+* Show Completed Tasks by default

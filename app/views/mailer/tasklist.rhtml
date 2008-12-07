@@ -1,0 +1,16 @@
+<%= @tasklist.title %>
+<%= @tasklist.description %>
+
+<% @tasks.each do |task| %>
+ <%= (task.complete?) ? "x" : "-" %> <%= task.title %><% if not task.notes.empty? %>
+<% task.notes.each_line do |line| %>     <%= line %><% end end end %>
+
+
+----------------------------
+This list is being maintained by <%= @tasklist.user.name %> at taskthis.elucidata-apps.com
+<% if not @all_tasks %>
+Completed tasks have not been included in this email. 
+<% end %>
+<% if @tasklist.is_public? %>
+You can view this list at <%= @public_url %>
+<% end %>

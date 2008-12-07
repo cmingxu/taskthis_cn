@@ -1,0 +1,21 @@
+<% if @is_public %>
+<h1><%= @user.name %>的个人资料</h1>
+
+<%= render :partial=>'public_profile', :locals=>{ :user=>@user } %>
+
+   <b>公开的任务列表</b><br/>
+   <%= render :partial=>'/shared/tasklists', :object => @user_tasklists, :locals=>{:is_public=>@is_public} %>
+
+<% else %>
+<h1>个人设置</h1>
+<%= render :partial=>'tabset', :locals=>{ :current=>'profile' } %>
+
+<%= render :partial=>'user_profile', :locals=>{ :user=>@user } %>
+
+   <div class="form">
+      <b>任务列表</b><br/>
+      <%= render :partial=>'/shared/tasklists', :object => @user_tasklists, :locals=>{:is_public=>@is_public} %>
+   </div>
+   
+<% end %>
+

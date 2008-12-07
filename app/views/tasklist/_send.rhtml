@@ -1,0 +1,34 @@
+<!-- begin div.send_tasklist -->
+<div id="send_tasklist" style="display:none">
+   <div class="action_box_content">
+      <% form_remote_tag( :url        => url_for( :action=>'send_tasklist', :id=>tasklist.id ),
+                           :html       => { :id => "tasklist-send-form" },
+                           :loading    => "Tasklist.on_send_loading()",
+                           :complete   => "Tasklist.on_send_complete(request)",
+                           :condition  => "Field.present('send_recipients')"
+      ) do %>
+      
+      发送任务列表给朋友<br/>
+
+      <span class="field-desc">您可以输入最多10个邮箱地址，每行一个<br/></span>
+
+      <textarea id="send_recipients" name="recipients" rows="5" cols="45" style="width: 420px;"></textarea><br/>
+      
+      <input id="cb1" type="checkbox" name="include_completed" value="1"/><input type="hidden" name="include_completed" value="0" />
+      <label for="cb1">包含已完成的任务？</label><br/>
+
+
+     <br/>
+
+     <div id="send_action_buttons" class="action_buttons">
+         <input type="submit" value="发送邮件"/>
+         &nbsp;
+         <a href="javascript:void(0)" onclick="Tasklist.close_action()">取消</a>
+      </div>
+
+      <%= image_tag "wait.gif", :id=>'send_loading', :style=>'display:none' %>
+
+      <% end %>
+   </div>
+</div>
+<!-- end div.send_tasklist -->

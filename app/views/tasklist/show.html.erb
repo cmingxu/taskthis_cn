@@ -1,0 +1,150 @@
+<div id="page_header">
+   <h1 id="tasklist_title_container" class="tasklist_title">
+      <div id="tasklist_title_commands">
+         <a href="javascript:void(0)" onclick="Tasklist.tasklist_edit()"><%= image_tag "mini-edit.gif" %></a>
+      </div>
+      <div id="tasklist_title"><%= @tasklist.title %></div>
+   </h1>
+   <hr/>
+
+   <!-- begin div.command_container -->
+   <div id="command_container">
+     <!-- begin div.commands -->
+     <div id="commands">
+        <div>
+           <a href="javascript:void(0);" onclick="Tasklist.toggle_notes(this)">显示注释</a>
+           | 
+           <a href="javascript:void(0);" onclick="Tasklist.toggle_action('share')">共享</a>
+           | 
+           <a href="javascript:void(0);" onclick="Tasklist.toggle_action('send')">发送</a>
+           |
+           <a href="<%= url_for print_url(:id=>@tasklist.id) %>">打印</a>
+           |
+           <a href="javascript:void(0);" class="donate" onclick="Tasklist.toggle_action('delete')">删除</a>
+           &nbsp;
+           <% 
+            style = ''
+            unless @tasklist.is_public?
+               style = 'display:none'
+            end
+           %>
+           <span id="RSS" style="<%= style %>" class="RSS"><a href="<%= url_for rss_url(:id=>@tasklist.id) %>">RSS</a></span>
+        </div> 
+        <span id="page_status_area">&nbsp;</span>
+     </div>
+     <!-- end div.commands -->
+   </div>
+   <!-- end div.command_container -->
+
+   <!-- Action Boxes -->
+
+   <%= render :partial=>'share', :locals=>{:tasklist=>@tasklist} %>
+
+   <%= render :partial=>'send', :locals=>{:tasklist=>@tasklist} %>
+
+   <%= render :partial=>'delete', :locals=>{:tasklist=>@tasklist} %>
+
+   <!-- begin div.description -->
+   <div id="tasklist_desc">
+     <%= @tasklist.description_html %>
+   </div>
+   <!-- end div.description -->
+</div>
+
+<!-- Task title and description form -->
+<div id="tasklist_title_form" style="display:none;" class="tasklist_edit">
+<% form_remote_tag( :url        => url_for( :action=>'edit', :id=>@tasklist.id ),
+                     :html       => { :id => "tasklist-form-#{ @tasklist.id }" },
+                     :loading    => "Tasklist.on_task_edit_loading('#{ @tasklist.id }')",
+                     :complete   => "Tasklist.on_task_edit_complete('#{ @tasklist.id }', request)",
+                     :condition  => "Field.present('tasklist_form_title')"
+) do %>
+   <p>
+		<input id="tasklist_form_title" name="tasklist[title]" class="tasklist_title" type="text" value="<%= @tasklist.title %>">
+   <p>
+   <p>
+		<textarea id="tasklist_form_desc" name="tasklist[description]" class="tasklist_desc"><%= @tasklist.description %></textarea>
+	</p>
+   <div class="tasklist_edit_buttons" id="tasklist_edit_buttons">
+      <input type="submit" value="保存" />
+      &nbsp;
+      <a href="javascript:void(0);" onclick="Tasklist.cancel_tasklist_edit('<%= @tasklist.id %>')">取消</a>
+   </div>
+   <%= image_tag "wait.gif", :id=>'tasklist_edit_loading', :style=>'display:none' %>
+<% end %>
+</div>
+
+
+<!-- begin div.tasklist_container -->
+<div id="tasklist_container">
+
+
+<ul id="tasklist_<%= @tasklist.id %>_items" class="active_tasklist">
+<% @incomplete_tasks.each do |taskitem| %>
+   <%= render :partial=>'taskitem_incomplete', :locals=>{ :taskitem=>taskitem, :is_update=>false, :allow_edit=>true, :allow_delete=>true } %>
+<% end %>
+</ul>
+
+<script>
+   var ul_id = 'tasklist_<%= @tasklist.id %>_items';
+   var url = '<%= reorder_taskitems_url() %>';
+   Tasklist.apply_sortable(ul_id, url);
+</script>
+
+
+<div id="tasklist-new-task-form" class="tasklist_new_taskitem"  style="<%= 'display:none;' unless isPrefTrue('show_addtask') %>">
+
+   <% form_remote_tag( :url        => url_for( :action=>'create_taskitem', :tasklist_id=>@tasklist.id ),
+                        :html       => { :id => "taskitem-form-#{ @tasklist.id }" },
+                        :update     => "tasklist_#{ @tasklist.id }_items",
+                        :position   => 'bottom',
+                        :effect     => 'highlight',
+                        :loading    => "Tasklist.on_new_taskitem_loading('#{ @tasklist.id }')",
+                        :complete   => "Tasklist.on_new_taskitem_complete('#{ @tasklist.id }')",
+                        :condition  => "Field.present('taskitem_new_title')"
+   ) do %>
+
+	<p>
+		<input type="text" id="taskitem_new_title" name="taskitem[new][title]" value="" class="taskitem_title" maxlength="100"/>
+	   <%= image_tag "wait.gif", :id=>'new_taskitem_loading', :style=>'display:none' %>
+	</p>
+
+   <p>
+		<textarea id="taskitem_new_notes" name="taskitem[new][notes]" rows="3" cols=18 class="taskitem_desc"></textarea>
+	</p>
+
+   <%= submit_button '添加任务' %>
+   &nbsp;
+   <a href="javascript:void(0);" onclick="Tasklist.hide_new_taskitem_form()">关闭</a>
+
+   <% end %>
+</div>   
+<div id="tasklist-new-task-link" class="tasklist_new_taskitem_link" style="<%= 'display:none;' if isPrefTrue('show_addtask') %>">
+   <a href="javascript:void(0);" onclick="Tasklist.show_new_taskitem_form()" class="button">添加任务</a>
+</div>
+
+
+<!-- begin div.completed_task_container -->
+<div id="completed_task_container">
+<% 
+   img_src = isPrefTrue('show_completed') ? "expanded.gif" : "collapsed.gif"  
+   img_alt = isPrefTrue('show_completed') ? "Hide Completed Tasks" : "Show Completed Tasks"  
+%>
+   <h2 onclick="Tasklist.toggle_completed_taskitems(this.firstChild)"><%= image_tag img_src, :alt=>img_alt, :size=>'12x12' %> 已完成任务</h2>
+
+   <div id="completed_taskitems_container" style="<%= 'display:none;' unless isPrefTrue('show_completed') %>">
+      <ul id="tasklist_<%= @tasklist.id %>_complete_items" class="active_tasklist">
+      <% @complete_tasks.each do |taskitem| %>
+         <%= render :partial=>'taskitem_complete', :locals=>{ :taskitem=>taskitem, :allow_delete=>true, :allow_edit=>true } %>
+      <% end %>
+      </ul>
+   </div>
+
+</div>
+<!-- end div.completed_task_container -->
+
+</div>
+<!-- end div.tasklist_container -->
+
+
+

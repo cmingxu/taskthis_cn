@@ -1,0 +1,30 @@
+<h1>个人设置</h1>
+
+<%= render :partial=>'tabset', :locals=>{ :current=>'preferences' } %>
+
+
+<% form_remote_tag( :url        => url_for( :action=>'update_prefs', :id=>current_user.id ),
+                     :html       => { :id => "prefs-form" },
+                     :loading    => "Prefs.on_save_loading()",
+                     :complete   => "Prefs.on_save_complete(request)"
+) do %>
+
+
+<div class="form form-padding">
+   
+   <%= pref_check_box "animate", "动画效果" %><br/>
+   <%= pref_check_box "show_addtask", "默认显示‘新任务’表单" %><br/>
+   <%= pref_check_box "show_notes", "默认显示注释" %><br/>
+   <%= pref_check_box "show_completed", "默认显示已完成任务" %><br/>
+
+   <br/>
+   
+   <div id="save_buttons">
+      <input type="submit" value="保存" />
+   </div>
+   
+   <%= image_tag "wait.gif", :id=>'prefs_loading', :style=>'display:none' %>
+
+</div>
+
+<% end %>

@@ -1,0 +1,59 @@
+<h1>请先登录</h1>
+<hr>
+
+<% if flash['notice'] %>
+   <div id="errorExplanation">
+      <h2>错误</h2>
+      <p><%= flash['notice'] %></p>
+   </div>
+<% end %>
+
+<form action="/login" method="POST">
+
+<!-- begin div.form -->
+<div id="form" class="form">
+   <table>
+      <tr>
+         <td>
+            <label for="user_login">用户名:</label>
+         </td>
+         <td>
+            <input type="text" name="user_login" id="user_login" size="30" value=""/><br/>
+         </td>
+      </tr>
+      <tr>
+         <td>
+            <label for="user_password">密码:</label><br/>
+         </td>
+         <td>
+            <input type="password" name="user_password" id="user_password" size="30"/><br/>
+         </td>
+      </tr>
+      <tr>
+         <td>&nbsp;</td>
+         <td>
+            <input type="checkbox" name="remember_me" id="remember_me" value="1" />
+            <input type="hidden" name="remember_me" value="0"/>
+            <label for="remember_me">记住我</label>
+         </td>
+      </tr>
+      <tr>
+         <td colspan="2">&nbsp;</td>
+      </tr>
+      <tr>
+         <td>&nbsp;</td>
+         <td>
+            <input type="submit" name="login" value="登录" />
+            &nbsp;
+            <%= link_to '忘记密码？', forgot_pwd_url %>
+         </td>
+      </tr>
+   </table>
+<p>
+   <b>还没有帐号？</b><br/>
+   <a href="<%= url_for signup_url %>">现在注册</a>! 
+</p>
+</div>
+<!-- end div.form -->
+</form>
+

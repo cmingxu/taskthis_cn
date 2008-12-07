@@ -1,0 +1,8 @@
+email_from: postmaster@elucidata-apps.com
+admin_email: admin@elucidata-apps.com
+send_emails: false
+server_env: development
+app_url: http://taskthis.elucidata-apps.com
+app_base_uri: 
+app_version: 0.6
+show_ads: false

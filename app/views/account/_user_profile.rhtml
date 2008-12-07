@@ -1,0 +1,45 @@
+<div class="profile_badge">
+     <table width="100%" cellspacing="" cellpadding="" border="0">
+        <tr>
+           <td width="100">
+              <a href="http://www.gravatar.com" target="_new_window"><img src="<%= get_gravatar( @user.email ) %>" width="80" height="80" title="Gravatar" border="0"/></a>
+           </td>
+           <td valign="top">
+              
+              <div id="profile_readonly">
+                 <div style="float:right; display:none; padding-top:3px;">
+                    <nowrap>
+                       <a href="javascript:void(0)" onclick="Profile.edit_profile()"><%= image_tag "mini-edit.gif", :alt=>"Delete", :title=>'Edit' %></a>
+                    </nowrap>
+                 </div>
+                 <h3 id="profile_name"><%= @user.name %></h3>
+                 <span id="profile_email"><%= @user.email %></span><br/>
+                 注册于 <%= Format::format_date( @user.created_on, "%m/%d/%Y" ) %><br/>
+                 <span style="color:red">&laquo;</span>请访问 <a href="http://www.gravatar.com" target="_new_window">Gravatar.com</a>更新您的头像。
+              </div>
+              
+              <div id="profile_form" style="display:none">
+                 <% form_remote_tag( :url        => url_for( :controller => 'account', :action=>'update_profile', :id=>current_user.id ),
+                                      :html       => { :id => "tasklist-form" },
+                                      :loading    => "Profile.on_profile_loading()",
+                                      :complete   => "Profile.on_profile_complete(request)",
+                                      :condition => "Field.present('user_name', 'user_email')"
+                 ) do %>
+                 
+                 <p><%= text_field "user", "name", :class=>'profile_name', :style=>"width:325px" %></p>
+                 
+                 <p><%= text_field "user", "email", :style=>"width:325px" %><br/></p>
+                 
+                 <div id="profile_button" >
+                    <input type="submit" value="保存" class="button"/>
+                    &nbsp;
+                    <a href="javascript:void(0)" onclick="Profile.cancel_edit_profile()">取消</a>
+                 </div>
+                 <%= image_tag "wait.gif", :id=>'profile_loading', :style=>'display:none' %>
+
+                 <% end %>
+              </div>
+           </td>
+        </tr>
+     </table>
+  </div>

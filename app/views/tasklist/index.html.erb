@@ -1,0 +1,22 @@
+<% if @is_public %>
+<h1><%= @user.name %>的个人资料</h1>
+
+<%= render :partial=>'/account/public_profile', :locals=>{ :user=>@user } %>
+
+   <b>公开的任务列表</b><br/>
+   <%= render :partial=>'/shared/tasklists', :object => @user_tasklists, :locals=>{:is_public=>@is_public} %>
+
+<% else %>
+<h1>任务列表</h1>
+<hr>
+	<%= render :partial=>'/account/user_profile', :locals=>{ :user=>@user } %>
+	<% form_remote_tag( :url        => url_for( :controller=>'tasklist', :action=>'update_tasklist_vis', :id=>current_user.id ),
+	                     :html       => { :id => "tasklist-form" },
+	                     :loading    => "Profile.on_tasklists_save_loading()",
+	                     :complete   => "Profile.on_tasklists_save_complete(request)"
+	) do %>
+	    <%= render :partial=>'/shared/tasklists', :object => @user_tasklists, :locals=>{:is_public=>@is_public} %>
+	    <br />
+	    <%= image_tag "wait.gif", :id=>'tasklist_loading', :style=>'display:none' %>
+	<% end %>
+<% end %>

@@ -1,0 +1,10 @@
+<h1>公开的任务列表</h1>
+<hr />
+<ul>
+<% @tasklists.each do |tasklist| %>
+   <li>
+      <a href="<%= url_for profile_url(:id=>tasklist.user.id) %>"><img src="<%= get_gravatar( tasklist.user.email, size=28 ) %>" title="<%= tasklist.user.name %>" align="top" valign="top" border="0" width="28" height="28"/></a>
+      <%= link_to tasklist.title, public_url(:id=>tasklist.id) %>
+   </li>
+<% end %>
+</ul>

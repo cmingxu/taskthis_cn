@@ -1,0 +1,19 @@
+xml.rss('version' => '2.0') do
+  xml.channel do 
+    xml.title( @tasklist.title )
+    xml.link( request.protocol + request.host_with_port )
+    xml.description( @tasklist.description_html )
+    @tasks.each { |task|
+      xml.item do
+        if task.complete?
+         xml.title( "已完成: #{task.title}" )
+        else
+         xml.title( "待完成: #{task.title}" )         
+        end
+        xml.link( url_for public_url(:id=>@tasklist.id) )
+        xml.description( task.notes_html )
+        xml.pubDate( task.updated_on )
+      end
+    }
+  end
+end

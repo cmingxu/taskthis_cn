@@ -1,0 +1,42 @@
+= TaskTHIS =
+
+Task*THIS* is a technology demo. It's provided as
+an example of how easy an AJAX enabled application 
+is to build using Rails (2.1.1)
+
+
+== Requirements
+
+* Ruby
+* Rails (2.1+)
+* RedCloth
+* Sqlite, MySql or Postgres
+
+
+== Installation
+
+=== Database
+
+The database uses Rails' Migration support. All you
+should have to do it initialize your database, after
+you created it, is to call:
+
+ > rake db:migrate
+
+As long as you've configured the database correctly 
+in config/database.yml, it should create the schema 
+for you.
+
+=== General
+
+You may need to set the 'executable' bit of the files 
+in the script/ folder on *nix systems (including Mac 
+OS X):
+
+> chmod 0744 script/*
+
+
+== Special Thanks
+
+* Robby (www.robbyonrails.com) for the PostgreSQL 
+  schema script

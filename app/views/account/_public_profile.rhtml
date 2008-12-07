@@ -1,0 +1,13 @@
+<div class="profile_badge">
+     <table width="100%" cellspacing="" cellpadding="" border="0">
+        <tr>
+           <td width="100">
+              <img src="<%= get_gravatar( user.email ) %>" width="80" height="80" title="Gravatar" border="0"/>
+           </td>
+           <td valign="top">
+              <h3><%= user.name %></h3>
+              注册于 <%= Format::format_date( user.created_on, "%m/%d/%Y" ) %><br/>
+           </td>
+        </tr>
+     </table>
+  </div>

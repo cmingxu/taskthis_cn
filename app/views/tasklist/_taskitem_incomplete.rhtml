@@ -1,0 +1,82 @@
+<% unless is_update %>
+<li id="taskitem_<%= taskitem.id %>" class="taskitem">
+<% end %>
+   <div id="taskitem_<%= taskitem.id %>_view">
+
+   <% form_remote_tag( :url        => url_for( :controller => 'tasklist', :action=>'mark_taskitem_complete', :taskitem_id=>taskitem.id ),
+                        :html       => { :id=> "taskitem_#{taskitem.id}_completion_form" },
+                        :update     => "tasklist_#{taskitem.tasklist.id}_complete_items",
+                        :position   => :bottom,
+                        :complete   => "Tasklist.on_mark_taskitem_complete_complete('#{taskitem.id}')"
+                        ) do %>
+
+      <div class="taskitem_toolbar">
+         <nowrap>
+<% if allow_edit %>
+            <a href="javascript:void(0);" onclick="Tasklist.edit_taskitem('<%= taskitem.id %>', '<%= url_for :action=>'destroy_taskitem', :id=>taskitem.id %>')"><%= image_tag "mini-edit.gif", :alt=>"Edit", :title=>'Edit', :size=>'14x13' %></a>
+            &nbsp;
+            <span class="handle" onmousedown="window.inDrag = true"><%= image_tag "mini-reorder.gif", :alt=>"Reorder", :title=>'Reorder', :size=>'14x13' %></span>
+<% end %>
+            &nbsp;
+<% if allow_delete %>
+            <a href="javascript:void(0);" onclick="Tasklist.delete_taskitem('<%= taskitem.id %>', '<%= url_for :action=>'destroy_taskitem', :id=>taskitem.id %>', false)"><%= image_tag "mini-delete.gif", :alt=>"Delete", :title=>'Delete', :size=>'14x13' %></a>
+<% end %>
+         </nowrap>
+      </div>
+
+<% unless taskitem.notes_html.empty? %>
+      <a href="javascript:void(0);" onclick="Element.toggle('taskitem_<%= taskitem.id %>_notes_html')"><%= image_tag 'notes.gif', :alt=>'Notes', :title=>'Click to view notes...', :align=>'absmiddle', :valign=>'absmiddle', :size=>'8x16', :border=>'0' %></a>
+<% else %>
+      <%= image_tag 'no-notes.gif', :align=>'absmiddle', :valign=>'absmiddle', :size=>'8x16' %>
+<% end %>
+
+<% if allow_edit %>
+      <input type="checkbox" onclick="Tasklist.mark_taskitem_complete(this, '<%= taskitem.id %>')" id="taskitem_<%= taskitem.id %>_check" name="taskitem_<%= taskitem.id %>_check"/>
+      <%= image_tag "wait.gif", :id=>"taskitem_#{taskitem.id}_loading", :style=>'display:none' %>
+<% else %>
+      <input type="checkbox" disabled="true" readonly="true"/>
+<% end %>
+
+      <span class="taskitem_title"><%= get_task_title taskitem %></span>
+
+      <div id="taskitem_<%= taskitem.id %>_notes_html" class="taskitem_notes" style="<%= 'display:none;' unless isPrefTrue('show_notes') %>s">
+         <%= taskitem.notes_html %>
+      </div>
+
+<% end %>      
+   </div>
+
+<% if allow_edit %>   
+   <!-- EDIT MODE -->
+   
+   <div id="taskitem_<%= taskitem.id %>_edit" class="taskitem_edit" style="display:none;">
+
+<% form_remote_tag( :url        => url_for( :action=>'edit_taskitem', :taskitem_id=>taskitem.id ),
+                     :html       => { :id=> "edit-form-taskitem-#{taskitem.id}" },
+                     :update     => "taskitem_#{taskitem.id}",
+                     :loading    => "Tasklist.on_edit_loading('#{taskitem.id}')",
+                     :complete   => "Tasklist.on_edit_complete('#{taskitem.id}')",
+                     :condition  => "Field.present('taskitem_#{ taskitem.id }_title')"
+                   ) do %>
+      
+      <p>
+		<input type="text" id="taskitem_<%= taskitem.id %>_title" name="taskitem[<%= taskitem.id %>][title]" value="<%= h taskitem.title %>" class="taskitem_title" maxlength="100" />
+      	<%= image_tag "wait.gif", :id=>"taskitem_#{taskitem.id}_edit_loading", :style=>'display:none' %>
+      </p>
+
+      <p><textarea id="taskitem_<%= taskitem.id %>_notes" name="taskitem[<%= taskitem.id %>][notes]" rows="3" cols=30 class="taskitem_desc"><%= h taskitem.notes %></textarea><br/></p>
+
+	<p>  <span id="taskitem_<%= taskitem.id %>_edit_buttons">
+         <input type="submit" value="保存" />
+         &nbsp;
+         <a href="javascript:void(0)" onclick="Tasklist.cancel_edit_taskitem('<%= taskitem.id %>')">取消</a>
+      </span></p>
+
+<% end %>
+      
+   </div>
+<% end %>
+
+<% unless is_update %>
+</li>
+<% end %>

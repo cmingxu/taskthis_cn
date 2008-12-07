@@ -1,0 +1,11 @@
+---
+inMenu: true
+directoryName: Help
+title: Index
+inMenu: false
+---
+h1. Help Contents
+
+Use the list of topics on the left to navigate to the area where you need help.
+
+%{color:red}Note:% %{color:maroon}This is still a work in progress.%

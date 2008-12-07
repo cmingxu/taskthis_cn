@@ -1,0 +1,40 @@
+<li id="taskitem_<%= taskitem.id %>_completed" class="taskitem complete">
+   <div>
+<% form_remote_tag( :url        => url_for( :controller => 'tasklist', :action=>'mark_taskitem_incomplete', :taskitem_id=>taskitem.id ),
+                     :html       => { :id=> "taskitem_#{taskitem.id}_incompletion_form" },
+                     :update     => "tasklist_#{taskitem.tasklist.id}_items",
+                     :position   => :bottom,
+                     :complete   => "Tasklist.on_mark_taskitem_incomplete_complete('#{taskitem.id}')"
+                     ) do %> 
+      <div class="taskitem_toolbar">
+         <nowrap>
+         <% if allow_delete %>
+            <a href="javascript:void(0)" onclick="Tasklist.delete_taskitem('<%= taskitem.id %>', '<%= url_for :controller=>'tasklist', :action=>'destroy_taskitem', :id=>taskitem.id %>', true)"><%= image_tag "mini-delete.gif", :alt=>"Delete", :title=>'Delete' %></a>
+         <% end %>
+         </nowrap>
+      </div>
+    
+
+<% unless taskitem.notes_html.empty? %>
+      <a href="javascript:void(0);" onclick="Element.toggle('taskitem_<%= taskitem.id %>_completed_notes_html')"><%= image_tag 'notes.gif', :alt=>'Notes', :title=>'Click to view notes...', :align=>'absmiddle', :valign=>'absmiddle', :size=>'8x16', :border=>'0' %></a>
+<% else %>
+      <%= image_tag 'no-notes.gif', :align=>'absmiddle', :valign=>'absmiddle', :size=>'8x16' %>
+<% end %>
+
+
+<% if allow_edit %>
+     <input type="checkbox" checked onclick="Tasklist.mark_taskitem_incomplete(this, '<%= taskitem.id %>')" id="taskitem_<%= taskitem.id %>_complete_check" name="taskitem_<%= taskitem.id %>_check"/>
+<% else %>
+   <input type="checkbox" checked disabled="true" readonly="true" />
+<% end %>
+     <%= image_tag "wait.gif", :id=>"taskitem_#{taskitem.id}_complete_loading", :style=>'display:none' %>
+     
+     <span class="taskitem_title"><%= get_task_title taskitem %></span>
+     
+     <div id="taskitem_<%= taskitem.id %>_completed_notes_html" class="taskitem_notes" style="<%= 'display:none;' unless isPrefTrue('show_notes') %>" >
+        <%= taskitem.notes_html %>
+     </div>
+
+<% end %>
+  </div>
+</li>

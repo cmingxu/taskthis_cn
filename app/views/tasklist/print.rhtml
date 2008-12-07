@@ -1,0 +1,66 @@
+      <h1><%= @tasklist.title %></h1>
+
+      <div class="description">
+         <%= @tasklist.description_html %>
+      </div>
+
+      <blockquote>
+<% 
+   count = 0   
+   @tasklist.taskitems.each do |taskitem| 
+      unless taskitem.complete?
+         count += 1
+-%>
+         <table>
+            <tr>
+               <td nowrap>
+                  <span style="border-bottom: 1px solid black;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span>
+               </td>
+               <td>
+                  <strong><%= textilize_without_paragraph taskitem.title %></strong>
+               </td>
+            </tr>
+            <tr>
+               <td>&nbsp;</td>
+               <td class="taskitem-description">
+                  <%= taskitem.notes_html %>
+               </td>
+            </tr>
+         </table>         
+<% 
+               end
+            end 
+-%>
+      </blockquote>
+
+<% if count < @tasklist.taskitems.count %>
+      <h3>Completed Tasks</h3>
+
+      <blockquote>
+
+<%
+      @tasklist.taskitems.each do |taskitem| 
+         if taskitem.complete?
+-%>
+         <table>
+            <tr>
+               <td nowrap>
+                  <span style="border-bottom: 1px solid black;"> &nbsp; &nbsp; X &nbsp; &nbsp; </span>
+               </td>
+               <td>
+                  <strong><%= textilize_without_paragraph taskitem.title %></strong>
+               </td>
+            </tr>
+            <tr>
+               <td>&nbsp;</td>
+               <td class="taskitem-description">
+                  <%= taskitem.notes_html %>
+               </td>
+            </tr>
+         </table>          
+<% 
+      end 
+   end
+-%>
+      </blockquote>
+<% end %>

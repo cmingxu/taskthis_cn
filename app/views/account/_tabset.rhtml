@@ -1,0 +1,8 @@
+<div class="Tabset">
+   <ul>
+      <li class="<%= "selected" if current == "preferences" %>"><%= link_to "设置", :action=>'prefs' %></li>
+      <li class="<%= "selected" if current == "profile" %>"><%= link_to "个人资料", :action=>'profile' %></li>
+      <li class="<%= "selected" if current == "change_password" %>"><%= link_to "修改密码", :action=>'change_password' %></li>      
+      <li class="<%= "selected" if current == "import_export" %>"><%= link_to "导入/导出", :action=>'import_export' %></li>
+   </ul>
+</div>

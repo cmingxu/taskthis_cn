@@ -1,0 +1,37 @@
+<h1>个人设置</h1>
+
+<%= render :partial=>'tabset', :locals=>{ :current=>'import_export' } %>
+
+<div class="form form-padding">
+
+<% form_tag( import_url, {:onsubmit=>'Profile.on_import()'} ) do %>
+   <b>导入</b><br/>
+   <p>
+   		<span class="field-desc">请在下面的文本框中输入要导入的任务列表数据，<br/></span>
+   		<textarea name="yaml_data" rows="10" style="width: 430px;"></textarea><br/>
+   </p>
+	<p>
+   		<input id="import_button" type="submit" value="导入"/>
+   		<%= image_tag "wait.gif", :id=>'import_loading', :style=>'display:none' %>
+	</p>
+<% end %>
+
+   <br/>
+
+<% form_tag( export_url, {:onsubmit=>'Profile.on_export()'} ) do %>
+
+   <b>导出</b><br/>
+	<p>
+		<span class="field-desc">请选择要导出的数据格式.<br/></span>
+		<select id="export_type" name="export_type" size="1">
+			<option value="YAML" selected>导出为YAML格式</option>
+			<option value="XML">导出为XML格式</option>
+		</select>
+	</p>
+
+	<p>
+		<input id="export_button" type="submit" value="Export"/>
+		<%= image_tag "wait.gif", :id=>'export_loading', :style=>'display:none' %>
+	</p>
+</div>
+<% end %>

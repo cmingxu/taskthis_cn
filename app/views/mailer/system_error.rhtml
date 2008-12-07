@@ -1,0 +1,26 @@
+TaskTHIS has encountered the following exception:
+
+  <%= @exception %>
+
+
+Parameters: -------------------------------------
+<% params.keys.each do |key| -%>
+  <%= key %> = <%= params[key].to_s %>
+<% end -%>
+
+
+Stacktrace: -------------------------------------
+<% @trace.each do |line| -%>
+  <%= line %>
+<% end -%>
+
+
+ENV: --------------------------------------------
+<% env.keys.each do |key| -%>
+  <%= key %> = <%= env[key].to_s %>
+<% end -%>
+
+
+Posted data: ------------------------------------
+  <%= @data %>
+

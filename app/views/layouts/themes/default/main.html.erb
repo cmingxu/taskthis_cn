@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		<meta http-equiv="Content-Language" content="en-us" />
+
+		<title>飞豆 —— 在线 任务 待办 事宜 列表 管理</title>
+
+		<meta name="ROBOTS" content="INDEX,NOFOLLOW" />
+		<meta http-equiv="imagetoolbar" content="no" />
+		<meta name="MSSmartTagsPreventParsing" content="true" />
+		<meta name="Copyright" content="(c) 2008-2009 Copyright content:  Copyright design: Yuanyi Zhang" />
+
+		<meta name="Keywords" content="todos, todo list, tasks, task list, 任务, 待办, 事宜" />
+		<meta name="Description" content="飞豆是一个免费的在线待办事宜及任务管理站点." />
+		
+		<%= theme_stylesheet_link_tag  %>
+		<%= javascript_include_tag :all %>
+	   <script>
+	<% if user? %>
+	      // App Prefs for <%= current_user.name %>
+	      var user_prefs = <%= session[:user_prefs].to_json %>;
+	<% else %>
+      	// Default prefs...
+      	var user_prefs = {"animate":true,"show_addtask":false,"show_completed":true,"show_notes":false};
+	<% end %>
+	   </script>
+	</head>
+
+	<body>
+		<div id="layout">
+			<div id="user_nav">
+               [
+               <% if user? %>         
+                  <%= link_to_unless_current '设置', {:controller => 'account', :action => 'profile'} %>
+                  |
+                  <%= link_to '注销', logout_url %>
+               <% else %>
+                  <%= link_to_unless_current '登录', login_url %>
+                  |
+                  <%= link_to_unless_current '免费注册', signup_url %>
+               <% end %>
+               ]
+            </div>
+			<div id="header">
+				<% if user? %>
+	        		<h1 id="logo"><a href="/tasklists" title="飞豆">飞豆</a></h1>
+				<% else %>
+	        		<h1 id="logo"><a href="/index" title="飞豆">飞豆</a></h1>
+				<% end %>
+				<hr class="noscreen" />
+			</div>
+		    <!-- end/ Header -->
+
+			<div id="container" class="box">
+				<div class="sidebar">
+	         	<% if user? %>         
+					<h3>任务列表</h3>
+					<hr/>
+	                <ul id="user_tasklists">
+	                <% unless current_user.tasklists_for_sidebar.length == 0  %>
+	                    <% for tasklist in current_user.tasklists_for_sidebar %>
+	                       <% cname = (tasklist.percent_complete == 100) ? "complete" : "incomplete" %>
+	                       <li id="tasklist_<%= tasklist.id  %>">
+	                          <span class="handle"><%= image_tag "tasklist_icon_#{cname}.gif", :alt=>cname, :size=>"10x10"%></span>
+	                          <%= link_to_unless_current tasklist.title, tasklist_url( :id=>tasklist.id ), :id=>"tasklist_#{ tasklist.id }_link" %></li>
+	                    <% end %>
+	                 <% else %>
+	                    <li>无法显示</li>
+	                 <% end %>
+	                 </ul>
+
+	                 <%= sortable_element 'user_tasklists', 
+	                    :update => 'list_reorder_results',
+	                    :handle => 'handle',
+	                    :complete => "Main.on_tasklist_reorder_complete()", 
+	                    :url => reorder_url() %>
+
+		            <div id="new_task_button">
+		            <a href="#" onclick="Main.show_create_new_tasklist();" class="button">新建任务列表</a><br/>
+		            <br/>
+		            </div>
+
+		            <div id="new_tasklist_panel" style="display:none;">
+		               <div>
+		               <% form_tag :controller=>'tasklist', :action=>'create' do %>
+		                  <p><input id="task_list_name" name="task_list_name" type="text" style="width:150px;" value="Tasklist Name"/></p>
+						  <p>
+		                  	<input type="submit" value="创建" class="button"/>
+		                  	<a href="#" onclick="Main.hide_create_new_tasklist();">取消</a>
+						  </p>
+		               <% end %>
+		               </div>
+		            </div>
+		         <% else %>
+					<h3>我能做什么?</h3><hr />
+					<p>如果您已经有了一个帐号，请先 </p><p><a href="/login" class="button">登录</a></p>
+					<p>如果您还没有飞豆帐号，那么现在就注册吧，注册是完全免费的： </p><p><a href="/signup" class="button">免费注册</a></p>
+					</ul>
+				 <% end %>
+				 </div>
+				
+		    	<!-- Content-->
+			    <div class="content box">
+					<div class="in">
+						<%= @content_for_layout %>
+					</div>
+				</div>
+				<!-- end/ Content-->
+			</div>
+			<div id="footer">
+				[
+                <a href="/index">首页</a>
+                |
+                <a href="/about">关于</a>
+                |
+                <a href="/terms">使用条款</a>
+                |
+                <a href="/privacy">隐私策略</a>
+                |
+                <a href="/FAQ">常见问题</a>
+				|
+                <a href="/source">飞豆源码</a>
+                |
+                <a href="/donate" class="donate">捐助!</a>
+                ]<br />
+				&copy; 2008 - <a href="#">飞豆</a>
+			</div>
+		</div>
+	</body>
+   <script>
+      Global.apply_default();
+   </script>
+</html>

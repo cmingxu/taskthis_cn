@@ -1,0 +1,23 @@
+# Configuration file for webgen
+# Used to set the parameters of the plugins
+
+Core/Configuration:
+  verbosityLevel: 2
+  srcDir: src
+  outDir: ../../public/
+  customVars:
+    version: '0.6'
+    home: '/'
+    login: '/login'
+    signup: '/signup'
+
+PageHandler:
+    validator: ~
+
+FileCopyHandler:
+    paths: ["**/*.css", "**/*.jpg", "**/*.png", "**/*.gif", "**/*.ico", "**/*.php"]
+
+VariableTags:
+   app-login: login
+   app-signup: signup
+   app-version: 0.6

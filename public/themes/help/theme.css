@@ -1,0 +1,73 @@
+
+BODY {
+   margin: 0px;
+   padding: 0px;
+
+   font-family: tahoma, arial, sans-serif;
+   
+   background: #FFFFFF url(images/help-bg.png) top left repeat-y;
+}
+
+.header {
+   background: #000000;
+   font-size: 18px;
+   padding: 5px;
+}
+
+.header A {
+   color: white;
+   text-decoration: none;
+}
+
+.menu {
+   padding-right: 10px;
+   font-size: 80%;
+   width: 150px;
+}
+
+.menu UL {
+   list-style: none;
+   padding: 0px;
+   margin: 0px;
+}
+.menu LI {
+   padding-left: 15px;
+   padding-top: 5px;
+}
+.menu A {
+   color: navy;
+   text-decoration: none;
+   border-bottom: 1px solid gray;
+}
+.menu A:hover {
+   color: blue;
+}
+.menu .selected A {
+   color: black;
+   text-decoration: none;
+   border-bottom: 0px;
+}
+.menu .selected A:hover {
+   color: black;
+}
+
+.content {
+   padding-left: 5px;
+   font-size: small;
+}
+
+.footer {
+   padding-left: 5px;
+   padding-top: 20px;
+   color: gray;
+   font-size: 70%;
+}
+
+.footer A {
+   color: gray;
+   font-weight: bold;
+}
+
+.paypal {
+   text-align: center;
+}

@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="en-us" />
+
+    <title>TaskTHIS :: {title: }</title>
+
+    <meta name="ROBOTS" content="INDEX,NOFOLLOW" />
+    <meta http-equiv="imagetoolbar" content="no" />
+    <meta name="MSSmartTagsPreventParsing" content="true" />
+    <meta name="Copyright" content="(c) 2005-2009 Copyright content:  Copyright design: Matthew McCray" />
+    <!-- (c) Copyright 2005 by Matthew McCray All Rights Reserved. -->
+
+    <meta name="Keywords" content="todos, todo list, tasks, task list" />
+    <meta name="Description" content="TaskTHIS is a free, opensource, todo list application." />
+
+    <link rel="stylesheet" href="/themes/default/theme.css" type="text/css" media="screen" title="Default Theme" charset="utf-8" />
+
+    <script src="/javascripts/prototype.js"></script>
+    <script src="/javascripts/cookiejar.js"></script>
+    <script src="/javascripts/application.js"></script>
+  </head>
+
+  <body id="root_body">
+
+      <!-- begin div.layout_container -->
+      <div id="layout_container">
+
+         <!-- begin div.site_header -->
+         <div id="site_header">
+
+            <!-- begin div.title_badge -->
+            <div id="title_badge">
+
+
+               <img id="gravatar" src="/images/taskthis-logo.jpg" width="50" height="50" alt="TaskTHIS" title="TaskTHIS" align="top"/>
+
+               <div id="user_id">
+                  Welcome to
+               </div>
+               <div id="site_title">
+                  <a href="{customVar: home}">TaskTHIS</a>
+               </div>
+
+            </div>
+            <!-- end div.title_badge -->
+
+            <!-- begin div.user_nav -->
+            <div class="user_nav" id="public_nav">
+               [
+                  <a href="{customVar: login}">Login</a>
+                  |
+                  <a href="{customVar: signup}">Register</a>
+               ]
+            </div>
+            <div class="user_nav" id="non_public_nav" style="display:none;">
+              [
+                 <a href="/prefs">Preferences</a>
+                 |
+                 <a href="/logout">Logout</a>
+                 |
+                 <a href="/help/index.html" onclick="window.open(this.href, 'help', 'width=640,height=400,scrollbars=yes,resizable=yes,toolbar=no,directories=no,location=no,menubar=no,status=yes');return false;">Help</a>
+
+              ]
+            </div>
+            <!-- end div.user_nav -->
+            <script>Public.init_nav();</script>
+
+         </div>
+         <!-- end div.site_header -->
+
+         <!-- begin div.sidebar -->
+         <div id="sidebar">
+
+
+            <!-- begin div.box_container -->
+            <!-- div class="box_container">
+               <div class="box_content">
+
+                 <h2>Not Registered?</h2>
+                 <hr/>
+                 <p>
+                    Join today, <a href="http://www.taskthis.com/app/signup">registration</a> is 
+                    free and easy!
+                 </p>
+
+               </div>
+               <div class="box_footer">
+                  <div>&nbsp;<span id="list_reorder_results" style="display:none"></span></div>
+               </div>
+            </div -->
+            <!-- end div.box_container -->
+
+            <!-- begin div.ads -->
+            <div id="ads">
+               <script type="text/javascript">
+               <!--
+                  google_ad_client = "pub-4148538552356376";
+                  google_alternate_ad_url = "{customVar: home}images/donate.jpg";
+                  google_ad_width = 120;
+                  google_ad_height = 240;
+                  google_ad_format = "120x240_as";
+                  google_ad_type = "text";
+                  google_ad_channel ="";
+                  google_color_border = "CCCCCC";
+                  google_color_bg = "FFFFFF";
+                  google_color_link = "000000";
+                  google_color_url = "666666";
+                  google_color_text = "333333";
+               //-->
+               </script>
+               <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+            </div>
+            <!-- end div.ads -->
+
+         </div>
+         <!-- end div.sidebar -->
+
+         <!-- begin div.content_area -->
+         <div id="content_area">
+
+            <!-- begin div.page -->
+            <div id="page">
+
+               {block: }
+
+            </div>
+            <!-- end div.page -->
+
+            <!-- begin div.footer -->
+            <div id="footer">
+               <div id="paypal">
+                  <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+                  <input type="hidden" name="cmd" value="_s-xclick">
+                  <input type="image" src="https://www.paypal.com/en_US/i/btn/x-click-but04.gif" border="0" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
+                  <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+                  ">
+                  </form>
+               </div>
+               <div>
+                  [
+                  <a href="{relocatable: terms.page}">Terms of Service</a>
+                  |
+                  <a href="{relocatable: privacy.page}">Privacy Policy</a>
+                  |
+                  <a href="{relocatable: FAQ.page}">FAQ</a>
+                  |
+                  <a href="{relocatable: donate.page}" class="donate">Donate!</a>
+                  ]
+                  <br />
+                  <br />
+                  <a href="{customVar: home}">TaskTHIS {customVar: version}</a> has been developed by <a href="http://www.mattmccray.com" target="_new_window">M@ McCray</a> and is made available on an "as is" basis, without warranties or guarantees of any kind.<br />
+               </div>
+            </div>
+            <!-- end div.footer -->
+
+         </div>
+         <!-- end div.content_area -->
+
+      </div>
+      <!-- end div.layout_container -->
+
+  </body>
+</html>

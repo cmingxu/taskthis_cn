@@ -1,0 +1,24 @@
+---
+title: Home
+---
+h1. Tasklists Done The Web 2.0 Way
+
+TaskTHIS is a modern, so-called "Web 2.0", application for managing task lists. You can create tasks with notes and publish them via RSS, or share them so that others can add/complete tasks on your list!
+
+*Web 2.0?*
+
+Yes, a Web 2.0 application is designed to be more interactive than a traditional web application -- a little more like a desktop application. To accomplish this feat an emerging technology called AJAX is used (actually the various parts of AJAX have been around for a few years, it's only just now becoming popular).
+
+*How is TaskTHIS different than Tadalist?*
+
+Feature-wise, TaskTHIS adds the ability to have notes attached to tasks (instead of forcing you to have a lengthly task titles). Unlike tada-lists, you can share your tasks with multiple users. Also, the source code to TaskTHIS is "available for download":/source.html -- so you can see exactly how it's done!
+
+*How _is_ it done?*
+
+TaskTHIS is a "Ruby on Rails":http://www.rubyonrails.com application (currently running version 1.0). It utilizes, rather liberally, Rails' built-in AJAX support.
+
+
+*Where to go from here:*
+
+* If you have an account, <a href="{customVar: login}">Login</a>!
+* If you don't have an account, <a href="{customVar: signup}">Register</a> -- It's free! (Although a donation would be nice)

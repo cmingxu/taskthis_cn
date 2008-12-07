@@ -1,0 +1,644 @@
+* { margin:0; padding:0; }
+body, div, span, p, a, img, ul, ol, li, form, fieldset, legend, dl, dt, dd, blockquote, applet, object { border:0; }
+body { 
+  padding: 0; 
+  margin:0;
+  background: #A7E9FF;
+  font: 0.8em/1.5 "arial",sans-serif; 
+  color: #000; 
+  text-align: center; 
+}
+
+/* obecne odkazy --------------------------------------------------------------- */
+a {color:#083e50;}
+a:link {color:#083e50;}
+a:hover {color:#000;}
+
+/* nadpisy --------------------------------------------------------------------- */
+h1, h2, h3, h4, h5, h6 { margin:15px 0 10px 0; color: #083e50;}
+h1 { font-size:200%; }
+h2 { font-size:140%; padding: 5px 0; font-weight: bold; }
+h3 { font-size:120%; }
+h4 { font-size:120%; }
+h5 { font-size:100%; }
+
+/* layout ---------------------------------------------------------------------- */
+#layout { 
+  background: #FFF;
+  width:725px;
+  margin:0px auto; 
+  text-align:left; 
+}
+  #container { 
+  
+    width: 725px;
+    height: auto;
+
+  }
+
+  	/* hlavicka ------------------------------------------------------------------ */
+  	#header { height: 100px;
+  		background: #A7E9FF;
+	}
+  
+      #logo {
+        font-size:260%;
+        margin: 0;
+        padding: 10px 0;
+        text-align: left;
+      }
+      #logo a{
+        display: block;
+        color: #083e50;
+        text-decoration: none;
+      }
+     
+        
+#user_nav {
+	float: right;
+	background: #A7E9FF;
+	width: 200px;
+	padding: 20px 10px 0px 0px;
+	text-align: right;
+}
+    /* horizontalni navigace --------------------------------------------------- */
+    #nav {position:relative;z-index:2;margin:20px auto 0; text-align: center; width: 280px; }
+      #nav ul {margin:0; padding:0; list-style:none;text-align: center;}
+      	#nav ul li {float:left; display:block; margin:0; padding:0 6px;}
+      	#nav ul li a {
+          display: block; 
+          float: left; 
+          font-size: 12px;
+          margin: 0 0;
+          padding: 3px 5px;
+          text-transform: uppercase;
+          color: #083e50;
+          font-weight: bold;
+          text-decoration: none;
+          text-align: center;
+        }
+        #nav ul li a:hover {
+          color: #fff;
+          background: #083e50;
+        }
+      	#nav ul li#active a {
+        text-decoration:none;color: #fff;
+          background: #083e50;}
+  
+  	.sidebar {
+		float:right;
+		border-left: 1px #DAF5FF solid; 
+		width: 180px;
+		padding-left: 20px;
+		margin-top: 20px;
+		margin-right: 20px;
+		margin-bottom: 20px;
+	}
+	
+    .content {
+      float: left; 
+      padding: 0 0 0 0;
+      width: 500px;
+      z-index: 10;
+    }
+    .content .in{
+      padding: 0 20px;
+    }
+  
+  	/* Sloupce ----------------------------------------------------------------- */
+  	#panel-right { float:right; width:200px; background: #f7f7f7;}
+  	#panel-left { float:right; width:200px; background: #f7f7f7; }
+  	.panel .in { padding: 10px; }
+  
+  
+  	/* paticka ----------------------------------------------------------------- */
+  	#footer {
+      clear:both;
+      overflow: hidden;
+      height: 59;
+	  line-height: 30px;
+      padding: 0 10px;
+	  background: #A7E9FF;
+	  text-align: center;
+    }
+      #footer a{ font-weight: bold;}
+      #footer a:hover{text-decoration: none; color: #d3f4ff;}
+      #footer a.webdesign {font-weight: normal; text-decoration: none;}
+
+input.button, a.button{
+	background: #2879c9;
+	color: #FFF;
+	text-decoration: none;
+	font-size: 80%;
+	padding: 5px 15px 5px 15px;
+	border: #2879c9 1px solid;
+}
+
+
+/* odstavce -------------------------------------------------------------------- */
+p { margin:15px 0; }
+
+/* tabulky --------------------------------------------------------------------- */
+table { margin:15px 0; border-collapse:collapse; border-spacing:0; font-size:100%; width: 100%; }
+th { text-align:left; font-weight:bold; background: #f7f7f7; padding: 7px 5px;}
+th, td { padding:3px 5px; }
+
+/* seznamy --------------------------------------------------------------------- */
+ul, ol { display:block; margin:15px 0 15px 10px; list-style-type:none; }
+ul ul, ul ul ul, ol ol, ol ol ol { margin:0; margin-left:20px; }
+ol { list-style-type:decimal; }
+ol ol { list-style-type:upper-alpha; }
+ol ol ol {list-style-type:lower-alpha; }
+li { display:list-item; font-size: 120%;}
+ul li a { text-decoration:underline;}
+
+/* definice -------------------------------------------------------------------- */
+dl { margin:15px 0; }
+dt { font-weight:bold; }
+dd { margin-left:30px; }
+
+/* ostatni --------------------------------------------------------------------- */
+fieldset { margin:15px 0; padding:30px 50px; border:3px solid #ccc; background: #f7f7f7; }
+fieldset label{display: block; width: 100px; float: left; margin: 5px;}
+fieldset input.text, fieldset textarea.text { display: block; float: left; margin: 5px; width: 410px; padding: 3px 5px;}
+fieldset .button{padding: 5px 15px;float: left;margin: 5px;}
+abbr, acronym, .help { border-bottom:1px dotted #CCC; cursor:help; }
+blockquote { margin:15px 20px; font-style:italic; }
+del, .del { text-decoration:line-through; }
+strong, .strong { font-weight:bold; }
+cite, em, q, var { font-style:italic; }
+code, kbd, samp  {font-family:monospace; font-size:110%; }
+hr { display:block; height:1px; margin:10px 0; padding:0; border:0 solid #CCC; background:#CCC; color:#CCC;} 
+.f-left {float:left;}
+.f-right {float:right;}
+.a-left, tr.a-left td {text-align:left;}
+.a-center, tr.a-center td {text-align:center;}
+.a-right, tr.a-right td {text-align:right;}
+.a-justify {text-align:justify;}
+.va-top {vertical-align:top;}
+.va-middle {vertical-align:middle;}
+.va-bottom {vertical-align:bottom;}
+.clear { clear:both; }
+.box { min-height:1px; }
+.box:after { display:block; visibility:hidden; clear:both; line-height:0; font-size:0; content:"."; }
+.noscreen { display:none; }
+.mleft10 { margin-left: 10px; }
+.mright10 { margin-right: 10px; }
+.mtop10 { margin-top: 10px; }
+.mbottom10 { margin-bottom: 10px; }
+
+/* univerzalni prvky ------------------------------------------------------------ */
+input.small{
+  width: 50px;
+}
+input.normal{
+  width: 146px;
+}
+.bigger {font-size:115%;}
+.smaller {font-size:85%;}
+
+.high {color:#00F;}
+.nonhigh {color:#777;}
+
+.foto{  display: block; border: 3px solid #ddd;}
+
+.field-help {
+   font-size: 80%;
+   color: #999999;
+}
+
+.form {
+   padding: 15px;
+   margin: 15px 0 15px 0;
+   background-color: #F0F0F0;
+}
+
+.form A {
+   color: maroon;
+   font-size: 80%;
+   text-decoration: none;
+   border-bottom: 1px solid silver;
+}
+
+.form A:hover {
+   color: red;
+   border-bottom: 1px solid red;
+}
+
+#share_tasklist {
+   border:1px solid darkgreen;
+   background-color: #D0FFDC;
+}
+
+#send_tasklist {
+   border: 1px solid tan;
+   background-color: #FEF5DA;
+}
+
+#delete_tasklist {
+   border: 1px solid red;
+   background-color: #FFDEDF;
+}
+
+.action_box_content {
+   padding: 15px;
+}
+
+.action_buttons A {
+   font-size: 80%;
+   color: black;
+}
+
+.action_buttons A:hover {
+   color: red;
+}
+
+.tasklist_edit_buttons A {
+   font-size: 80%;
+   color: black;
+}
+
+.tasklist_edit_buttons A:hover {
+   color: red;
+}
+
+.highlight {
+   background-color: #FFFFD8;
+}
+
+.handle {
+   cursor: move;
+}
+
+.profile_badge {
+   margin: 15px;
+   padding: 5px;   
+   clear: left;
+}
+
+.profile_badge H3 {
+   margin: 0px;
+   padding: 0px;
+   font-size: 130%;
+   color: black;
+}
+.profile_badge TD {
+   font-size: 90%;
+   color: gray;
+}
+#profile_form A {
+   color: black;
+}
+#profile_form A:hover {
+   color: red;
+}
+.profile_name {
+   font-size: 130%;
+   color: black;
+}
+
+.badge {
+   background: #A5A5A5 url(/images/badge-bg.gif) top left repeat-x;
+   color: white;
+   padding: 1px 3px;
+   font-size: 9px;
+   border: 1px solid gray;
+   cursor: default;
+/*   -webkit-border-radius: 4px;
+   text-shadow: 0px 0px 4px #777;*/
+}
+
+.Tabset {
+   float:left;
+   width:100%;
+   background: white;
+/*   font-size:120%; */
+   line-height:normal;
+   margin-bottom: 10px;
+   border-bottom: 1px solid gray;
+   padding-top: 5px;
+}
+.Tabset ul {
+  margin:0;
+  padding:0;
+  list-style:none;
+  }
+.Tabset li {
+  float:left;
+  margin:0;
+  padding:0;
+  }
+  
+.Tabset A {
+   display:block;
+   color: gray;
+   text-decoration: none;
+   padding: 3px 10px;
+}
+
+.Tabset A:hover {
+   color: black;
+}
+
+.selected A {
+   color: #003399;
+   border-bottom: 4px solid gray;
+}
+
+INPUT.tasklist_title {
+   margin-top: 10px;
+   margin-bottom: 2px;
+   width: 315px;
+   font-size: 120%;
+   color: #003399;
+   font-weight: normal;
+}
+
+TEXTAREA.tasklist_desc {
+   width: 315px;
+   height: 60px;
+}
+
+.active_tasklist {
+   list-style: none;
+   margin: 0px;
+   padding: 0px;
+   margin-bottom: 25px;
+}
+
+.active_tasklist LI {
+   padding: 3px;
+   margin-left: 10px;
+}
+
+#tasklist_title_commands {
+   float:right; 
+   visibility: hidden;
+}
+H1>#tasklist_title_commands {
+   padding-top: 12px;
+}
+#completed_task_container {
+   background-color: #F0F0F0;
+}
+
+#completed_task_container .taskitem {
+   color: #333333;
+   font-size: 100%;
+}
+
+#completed_task_container .highlight {
+   background-color: #E5E5E5;
+}
+
+.field-desc {
+   color:gray; 
+   font-size: 80%;
+}
+.field-desc A {
+   color: gray;
+}
+.field-desc A:hover {
+   color: red;
+}
+
+.Tasklist {
+   margin-top: 15px;
+   border: 1px solid #A9C796;
+}
+
+.Tasklist TH {
+   background-color: #D6FBBF;
+   border-bottom: 1px solid #A9C796;
+   color: gray;
+   font-size: 100%;
+}
+
+.Tasklist .Odd-Row {
+   background-color: #EDFFE1;   
+}
+
+.Tasklist .Even-Row {
+   background-color: #FFFFFF;   
+}
+
+.Tasklist A {
+   color: black;
+   font-size: 150%;
+   text-decoration: none;
+   border-bottom: 1px solid gray;
+}
+
+.Tasklist A:hover {
+   color: blue;
+   border-bottom: 1px solid gray;
+}
+
+/*
+   Task Item Styles
+*/
+
+.taskitem_title {
+   font-size: 110%;
+   padding-left: 10px;
+}
+
+.taskitem_notes {
+   margin-left: 35px;
+   color: #999999;
+}
+
+.taskitem_notes UL {
+   margin: 0px;
+   padding: 0px;
+}
+.taskitem_notes LI {
+   margin-left: 20px;
+   padding: 0px;
+}
+
+.taskitem_notes P {
+   margin: 0px;
+   padding: 0px;
+}
+
+.taskitem_edit {
+   padding: 2px;
+   padding-left: 32px;
+   background: #E1EAFF;
+   margin-bottom: 25px;   
+   margin-left: 15px;
+}
+
+INPUT.taskitem_title {
+   width: 315px;   
+}
+
+TEXTAREA.taskitem_desc {
+   width: 375px;
+}
+
+.tasklist_edit {
+   background-color: #E1EAFF;   
+   padding-left: 10px ;
+}
+
+.tasklist_new_taskitem {
+   padding: 2px;
+   padding-left: 32px;
+   background: #E1EAFF;
+   margin-bottom: 25px;   
+   margin-left: 15px;
+}
+.tasklist_new_taskitem A {
+   color: black;
+   font-size: 80%; 
+}
+.tasklist_new_taskitem A:hover {
+   color: red;
+}
+
+.tasklist_new_taskitem_link {
+   padding: 2px;
+   padding-left: 32px;
+   margin-left: 15px;
+   margin-bottom: 25px;      
+}
+
+.tasklist_new_taskitem_link A {
+   color: white;
+   font-size: 90%;
+}
+.tasklist_new_taskitem_link A:hover {
+   color: blue;
+}
+.loading {
+   background: url(images/wait.gif) top right no-repeat;
+}
+
+.taskitem_toolbar {
+   float: right; 
+   padding-top:3px;
+   z-index: 99999;
+   visibility: hidden;
+}
+
+.taskitem_edit A {
+   color: black;
+   font-size: 80%;
+}
+.taskitem_edit A:hover {
+   color: red;
+}
+
+
+/*
+   ERROR STYLES
+*/
+
+#errorExplanation {
+  border: 1px solid #f0f0f0;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#errorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  background-color: #c00;
+  color: #fff;
+  cursor: pointer;
+}
+
+#errorExplanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 5px;
+}
+
+#errorExplanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+
+.fieldWithErrors {
+   display: inline;
+   background: red;
+   margin: 0px;
+   padding: 0px
+}
+
+/*
+   Command Styles
+*/
+#page_status_area {
+   font-size: 12px;
+   color: red;
+   
+   float: left;
+   margin-left: 15px;
+   margin-top: 4px;
+}
+
+#command_container {
+   margin-bottom: 8px;
+   background: #E5E5E5 url(images/cmd_pnl_left_cap.jpg) top left no-repeat;
+}
+
+#commands {
+   background: url(images/cmd_pnl_right_cap.jpg) top right no-repeat;
+   
+   height: 22px;
+   
+   font-size: 70%;
+   color: #999999;
+}
+
+#commands DIV {
+   float: right;
+   
+   margin-right: 15px;
+   margin-top: 4px;
+
+}
+
+#commands A {
+   color: #666666;
+   font-weight: bold;
+   text-decoration: none;
+   padding-left: 3px;
+   padding-right: 3px;
+}
+
+#commands A:hover {
+   color: red;
+}
+
+
+#paypal {
+   text-align: center;
+   float: left;
+   width: 100px;
+   height: 110px;
+   padding-top: 15px;
+}
+
+.RSS {
+   background: #EA8500;
+   font-weight: bold;
+   padding: 3px;
+   padding-top: 1px;
+   padding-bottom: 1px;
+   font-size: 10px;
+}
+.RSS A {
+   color: white !important;
+   text-decoration: none;
+   border: 0px;
+}
+

@@ -1,0 +1,14 @@
+BODY, TABLE, P {
+   font-family: Georgia, Verdana, Arial;
+   font-size: 13pt;
+}
+h1 {
+   margin-bottom: 0; 
+}
+.description {
+   color: gray;
+}
+.taskitem-description, .taskitem-description P {
+   color: gray;
+   font-size: 11pt;
+}

@@ -1,0 +1,73 @@
+<div id="page_header">
+
+   <h1 id="tasklist_title_container" class="tasklist_title">
+      <div id="tasklist_title_commands" style="display:none; float:right;">
+         
+      </div>
+      <div id="tasklist_title">
+         <a href="<%= url_for profile_url(:id=>@tasklist.user.id) %>"><img src="<%= get_gravatar( @tasklist.user.email, size=28 ) %>" title="<%= @tasklist.user.name %>" align="top" valign="top" border="0" width="28" height="28"/></a>
+         <%= @tasklist.title %>
+      </div>
+   </h1>
+	<hr />
+   <!-- begin div.command_container -->
+   <div id="command_container">
+     <!-- begin div.commands -->
+     <div id="commands">
+        <div>
+           <a href="javascript:void(0);" onclick="Tasklist.toggle_notes(this)">显示注释</a>
+           |
+           <a href="<%= url_for print_url(:id=>@tasklist.id) %>">打印</a>
+           &nbsp;
+           <span class="RSS"><a href="<%= url_for rss_url(:id=>@tasklist.id) %>">RSS</a></span>
+        </div>
+        <span id="page_status_area">&nbsp;</span>
+     </div>
+     <!-- end div.commands -->
+   </div>
+   <!-- end div.command_container -->
+
+   <!-- begin div.description -->
+   <div id="tasklist_desc">
+     <%= @tasklist.description_html %>
+   </div>
+   <!-- end div.description -->
+</div>
+
+<link rel="alternate" type="application/rss+xml" title="<%= @tasklist.title %> in RSS 2.0" href="<%= url_for rss_url(:id=>@tasklist.id) %>" />
+
+<!-- begin div.tasklist_container -->
+<div id="tasklist_container">
+
+
+<ul id="tasklist_<%= @tasklist.id %>_items" class="active_tasklist">
+<% @incomplete_tasks.each do |taskitem| %>
+   <%= render :partial=>'taskitem_incomplete', :locals=>{ :taskitem=>taskitem, :is_update=>false, :allow_delete=>false, :allow_edit=>false } %>
+<% end %>
+</ul>
+
+<!-- begin div.completed_task_container -->
+<div id="completed_task_container">
+   <% 
+      img_src = isPrefTrue('show_completed') ? "expanded.gif" : "collapsed.gif"  
+      img_alt = isPrefTrue('show_completed') ? "Hide Completed Tasks" : "Show Completed Tasks"  
+   %>
+   <h2 onclick="Tasklist.toggle_completed_taskitems(this.firstChild)"><%= image_tag img_src, :alt=>'img_alt', :size=>'12x12' %> 已完成任务
+   </h2>
+
+   <div id="completed_taskitems_container" style="<%= 'display:none;' unless isPrefTrue('show_completed') %>">
+      <ul id="tasklist_<%= @tasklist.id %>_complete_items" class="active_tasklist">
+      <% @complete_tasks.each do |taskitem| %>
+         <%= render :partial=>'taskitem_complete', :locals=>{ :taskitem=>taskitem, :allow_delete=>false, :allow_edit=>false } %>
+      <% end %>
+      </ul>
+   </div>
+
+</div>
+<!-- end div.completed_task_container -->
+
+</div>
+<!-- end div.tasklist_container -->
+
+
+

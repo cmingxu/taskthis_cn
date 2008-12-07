@@ -1,0 +1,16 @@
+<!-- begin div.delete_tasklist -->
+<div id="delete_tasklist" style="display:none">
+   <div class="action_box_content">
+      <% form_tag :action=>'delete' do %>
+      确定删除此任务列表吗?<br/>
+      <br/>
+      <div class="action_buttons">
+         <input type="hidden" name="tasklist_id" value="<%= tasklist.id %>">
+         <input type="button" value="删除" onclick="Tasklist.delete_tasklist(this.form)"/>
+         &nbsp;
+         <a href="javascript:void(0)" onclick="Tasklist.close_action()">取消</a>
+      </div>
+      <% end %>
+   </div>
+</div>
+<!-- end div.delete_tasklist -->

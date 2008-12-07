@@ -1,0 +1,18 @@
+xml.tasklists('version' => '0.5') do
+
+   @tasklists.each do |tasklist|
+      xml.tasklist do 
+         xml.title h(tasklist.title)
+         xml.description h(tasklist.description)
+         tasklist.taskitems.each do |task|
+            xml.taskitem do
+               xml.title h(task.title)
+               xml.notes  h(task.notes)
+               xml.position  task.position
+               xml.complete  task.complete
+               # xml.due_one task.due_on
+            end
+         end
+      end
+   end
+end
