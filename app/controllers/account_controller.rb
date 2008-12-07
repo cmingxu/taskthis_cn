@@ -42,7 +42,7 @@ class AccountController < ApplicationController
       handle_login @user
       
       flash['notice']  = "Signup successful"
-      redirect_back_or_default :action => "welcome"
+      redirect_back_or_default tasklists_path
     end      
   end
   
@@ -60,7 +60,7 @@ class AccountController < ApplicationController
   # The Welcome page. This is the page that the login sends you to.
   #
   def welcome
-     redirect_to profile_url
+     redirect_to tasklists_path
   end
   
 
