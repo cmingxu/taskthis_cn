@@ -88,7 +88,7 @@ Object.extend(Array.prototype, {
 
 /*--------------------------------------------------------------------------*/
 if (!window.Element) {
-  var window.Element = new Object();
+  window.Element = new Object();
 }
 
 Object.extend(Element, {
