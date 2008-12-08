@@ -576,7 +576,6 @@ var Main = {
            Element.show('new_tasklist_panel');
         }
       );
-      $('task_list_name').focus();
    },
    
    hide_create_new_tasklist: function() {
