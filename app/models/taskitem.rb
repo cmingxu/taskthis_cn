@@ -6,6 +6,8 @@ class Taskitem < ActiveRecord::Base
 	acts_as_list :scope=>'tasklist_id = #{tasklist_id} AND complete = 0'
 
 	before_save :create_html
+
+	named_scope :completed, :conditions => 'complete = 1'
 	
 	def toggle_complete
 	   transaction do 
