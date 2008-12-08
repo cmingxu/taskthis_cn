@@ -13,13 +13,13 @@
       <div class="taskitem_toolbar">
          <nowrap>
 <% if allow_edit %>
-            <a href="javascript:void(0);" onclick="Tasklist.edit_taskitem('<%= taskitem.id %>', '<%= url_for :action=>'destroy_taskitem', :id=>taskitem.id %>')"><%= image_tag "mini-edit.gif", :alt=>"Edit", :title=>'Edit', :size=>'14x13' %></a>
+            <a href="javascript:void(0);" onclick="Tasklist.edit_taskitem('<%= taskitem.id %>', '<%= url_for :action=>'destroy_taskitem', :id=>taskitem.id %>')"><%= image_tag "mini-edit.gif", :alt=>"Edit", :title=>'编辑', :size=>'14x13' %></a>
             &nbsp;
-            <span class="handle" onmousedown="window.inDrag = true"><%= image_tag "mini-reorder.gif", :alt=>"Reorder", :title=>'Reorder', :size=>'14x13' %></span>
+            <span class="handle" onmousedown="window.inDrag = true"><%= image_tag "mini-reorder.gif", :alt=>"Reorder", :title=>'排序', :size=>'14x13' %></span>
 <% end %>
             &nbsp;
 <% if allow_delete %>
-            <a href="javascript:void(0);" onclick="Tasklist.delete_taskitem('<%= taskitem.id %>', '<%= url_for :action=>'destroy_taskitem', :id=>taskitem.id %>', false)"><%= image_tag "mini-delete.gif", :alt=>"Delete", :title=>'Delete', :size=>'14x13' %></a>
+            <a href="javascript:void(0);" onclick="Tasklist.delete_taskitem('<%= taskitem.id %>', '<%= url_for :action=>'destroy_taskitem', :id=>taskitem.id %>', false)"><%= image_tag "mini-delete.gif", :alt=>"Delete", :title=>'删除', :size=>'14x13' %></a>
 <% end %>
          </nowrap>
       </div>
@@ -60,11 +60,14 @@
                    ) do %>
       
       <p>
+		<label for='taskitem_title'>任务</label>
 		<input type="text" id="taskitem_<%= taskitem.id %>_title" name="taskitem[<%= taskitem.id %>][title]" value="<%= h taskitem.title %>" class="taskitem_title" maxlength="100" />
       	<%= image_tag "wait.gif", :id=>"taskitem_#{taskitem.id}_edit_loading", :style=>'display:none' %>
       </p>
 
-      <p><textarea id="taskitem_<%= taskitem.id %>_notes" name="taskitem[<%= taskitem.id %>][notes]" rows="3" cols=30 class="taskitem_desc"><%= h taskitem.notes %></textarea><br/></p>
+      <p>
+		<label for='taskitem_notes'>描述</label>
+		<textarea id="taskitem_<%= taskitem.id %>_notes" name="taskitem[<%= taskitem.id %>][notes]" rows="3" cols=30 class="taskitem_desc"><%= h taskitem.notes %></textarea><br/></p>
 
 	<p>  <span id="taskitem_<%= taskitem.id %>_edit_buttons">
          <input type="submit" value="保存" />

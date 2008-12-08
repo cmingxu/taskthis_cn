@@ -30,20 +30,21 @@
 
 	<body>
 		<div id="layout">
-			<div id="user_nav">
-               [
-               <% if user? %>         
-                  <%= link_to_unless_current '设置', {:controller => 'account', :action => 'profile'} %>
-                  |
-                  <%= link_to '注销', logout_url %>
-               <% else %>
-                  <%= link_to_unless_current '登录', login_url %>
-                  |
-                  <%= link_to_unless_current '免费注册', signup_url %>
-               <% end %>
-               ]
-            </div>
 			<div id="header">
+				<div id="user_nav">
+	               [
+	               <% if user? %>         
+	                  <%= link_to_unless_current '设置', '/profile' %>
+	                  |
+	                  <%= link_to '注销', logout_url %>
+	               <% else %>
+	                  <%= link_to_unless_current '登录', login_url %>
+	                  |
+	                  <%= link_to_unless_current '免费注册', signup_url %>
+	               <% end %>
+	               ]
+	            </div>
+
 				<% if user? %>
 	        		<h1 id="logo"><a href="/tasklists" title="飞豆">飞豆</a></h1>
 				<% else %>
@@ -85,7 +86,7 @@
 		            <div id="new_tasklist_panel" style="display:none;">
 		               <div>
 		               <% form_tag :controller=>'tasklist', :action=>'create' do %>
-		                  <p><input id="task_list_name" name="task_list_name" type="text" style="width:150px;" value="Tasklist Name"/></p>
+		                  <p><input id="task_list_name" name="task_list_name" type="text" style="width:150px;" value="Tasklist Name" onfocus="$('task_list_name').value = '';"/></p>
 						  <p>
 		                  	<input type="submit" value="创建" class="button"/>
 		                  	<a href="#" onclick="Main.hide_create_new_tasklist();">取消</a>

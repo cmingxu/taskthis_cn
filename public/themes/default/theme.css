@@ -90,7 +90,7 @@ h5 { font-size:100%; }
 		float:right;
 		border-left: 1px #DAF5FF solid; 
 		width: 180px;
-		padding-left: 20px;
+		padding-left: 10px;
 		margin-top: 20px;
 		margin-right: 20px;
 		margin-bottom: 20px;
@@ -99,7 +99,7 @@ h5 { font-size:100%; }
     .content {
       float: left; 
       padding: 0 0 0 0;
-      width: 500px;
+      width: 490px;
       z-index: 10;
     }
     .content .in{
@@ -596,7 +596,7 @@ TEXTAREA.taskitem_desc {
    
    height: 22px;
    
-   font-size: 70%;
+   font-size: 90%;
    color: #999999;
 }
 

@@ -60,9 +60,11 @@
                      :condition  => "Field.present('tasklist_form_title')"
 ) do %>
    <p>
+		<label for='taskitem_title'>任务</label>
 		<input id="tasklist_form_title" name="tasklist[title]" class="tasklist_title" type="text" value="<%= @tasklist.title %>">
    <p>
    <p>
+		<label for='taskitem_notes'>描述</label>	
 		<textarea id="tasklist_form_desc" name="tasklist[description]" class="tasklist_desc"><%= @tasklist.description %></textarea>
 	</p>
    <div class="tasklist_edit_buttons" id="tasklist_edit_buttons">
@@ -105,11 +107,13 @@
    ) do %>
 
 	<p>
+		<label for='taskitem_title'>任务</label>
 		<input type="text" id="taskitem_new_title" name="taskitem[new][title]" value="" class="taskitem_title" maxlength="100"/>
 	   <%= image_tag "wait.gif", :id=>'new_taskitem_loading', :style=>'display:none' %>
 	</p>
 
    <p>
+		<label for='taskitem_notes'>描述</label><br />
 		<textarea id="taskitem_new_notes" name="taskitem[new][notes]" rows="3" cols=18 class="taskitem_desc"></textarea>
 	</p>
 
