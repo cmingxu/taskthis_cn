@@ -28,7 +28,7 @@ class TasklistController < ApplicationController
       @tasklist = Tasklist.find( params[:id] )      
       
       unless @tasklist.is_public?
-         redirect_to profile_url
+         redirect_to tasklists_path
       end
       
       @complete_tasks =  @tasklist.taskitems.find( :all, :conditions=>'complete = 1')
@@ -75,7 +75,7 @@ class TasklistController < ApplicationController
       @tasklist = Tasklist.find( params[:id] )      
 
       unless @tasklist.is_public? or @tasklist.user == current_user
-         redirect_to profile_url
+         redirect_to tasklists_path
       end
       
       render :action=>'print', :layout=>theme_layout_path('print')
@@ -91,7 +91,7 @@ class TasklistController < ApplicationController
    def rss
       @tasklist = Tasklist.find( params[:id] )      
 
-      redirect_to profile_url unless @tasklist.is_public?
+      redirect_to tasklists_url unless @tasklist.is_public?
       
       @tasks = @tasklist.taskitems.find(:all, :order=>'updated_on')
       @complete_tasks =  @tasklist.taskitems.find( :all, :conditions=>'complete = 1')
@@ -223,7 +223,7 @@ class TasklistController < ApplicationController
    def edit
       if request.post?
          @tasklist = Tasklist.find(params['id'])
-         redirect_to profile_url if @tasklist.user != current_user
+         redirect_to tasklists_path if @tasklist.user != current_user
 
          @tasklist.attributes = params["tasklist"]
       
@@ -257,7 +257,7 @@ class TasklistController < ApplicationController
          if tl.user == current_user
             tl.destroy
          end
-        redirect_to profile_url
+        redirect_to tasklists_path
      else
         render_nothing "403 Forbidden"
      end

@@ -435,6 +435,13 @@ H1>#tasklist_title_commands {
    border-bottom: 1px solid gray;
 }
 
+.Tasklist .completed A {
+   color: gray;
+   font-size: 100%;
+   text-decoration: none;
+   border-bottom: 1px solid gray;
+}
+
 /*
    Task Item Styles
 */

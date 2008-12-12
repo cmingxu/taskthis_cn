@@ -1,29 +1,30 @@
+<% completed = tasklists.reject {|tl| !tl.complete?} %>
+<% uncompleted = tasklists - completed %>
+
 <table class="Tasklist" width="100%" cellspacing="0" cellpadding="3" border="0">
-        <tr>
-           <th align="left">列表名称</th>
-           <th style="text-align:center; width: 50px;" title="Percent Complete">完成度</th>
-           <th align="left">&nbsp;</th>
-        </tr>
-        
-<% tasklists.each_with_index do |tl, i| %>
-         <tr class="<%= (i % 2 == 0) ? "Even-Row" : "Odd-Row"%>">
-		    <td>
-			   <% if is_public %>              
-			       <%= link_to tl.title, public_url(:id => tl.id)  %>
-			   <% else %>
-			       <%= link_to tl.title, tasklist_url(:id => tl.id)  %>
-			   <% end %>
-			</td>
+    <tr>
+       <th align="left">待完成</th>
+       <th style="text-align:center; width: 20px;" title="Percent Complete">&nbsp;</th>
+       <th align="left">&nbsp;</th>
+    </tr>
+       
+	<% uncompleted.each_with_index do |tl, i| %>
+        <tr class="<%= (i % 2 == 0) ? "Even-Row" : "Odd-Row"%>">
+	    <%= render :partial => '/shared/tasklist', :object => tl, :locals => {:is_public => is_public} %>
+       </tr>      
+	<% end %>
+</table>
 
-        	<td style="width: 50px;" align="center">
-	          <span class="field-desc"><%= tl.percent_complete %>%</span>
-	        </td>
-
-			<td style="width: 30px;" align="right">
-			<% if tl.is_public? %>
-				<span class="RSS"><%= link_to "RSS", rss_url(:id=>tl.id) %></RSS>
-			<% end %>
-			</td>
-        </tr>      
-<% end %>
+<table class="Tasklist" width="100%" cellspacing="0" cellpadding="3" border="0">
+    <tr>
+       <th align="left">已完成</th>
+       <th style="text-align:center; width: 20px;" title="Percent Complete">&nbsp;</th>
+       <th align="left">&nbsp;</th>
+    </tr>
+       
+	<% completed.each_with_index do |tl, i| %>
+        <tr class="<%= (i % 2 == 0) ? "Even-Row" : "Odd-Row"%> completed">
+	    <%= render :partial => '/shared/tasklist', :object => tl, :locals => {:is_public => is_public} %>
+       </tr>      
+	<% end %>
 </table>

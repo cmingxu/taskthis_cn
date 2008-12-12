@@ -1,0 +1,17 @@
+<td>
+   <% if is_public %>              
+       <%= link_to tasklist.title, public_url(:id => tasklist.id)  %>
+   <% else %>
+       <%= link_to tasklist.title, tasklist_url(:id => tasklist.id)  %>
+   <% end %>
+</td>
+
+<td style="width: 20px;" align="center">
+  <span class="field-desc"><%= tasklist.percent_complete %>%</span>
+</td>
+
+<td style="width: 30px;" align="right">
+<% if tasklist.is_public? %>
+	<span class="RSS"><%= link_to "RSS", rss_url(:id=>tasklist.id) %></RSS>
+<% end %>
+</td>

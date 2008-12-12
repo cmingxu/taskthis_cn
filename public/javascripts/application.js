@@ -86,8 +86,8 @@ var Global = {
 };
 
 var Tasklist = {
-   delete_task_msg: "Deleting this task is permanent.\n\nClick 'OK' to continue with delete.",
-   delete_list_msg: "Deleting is permanent.\n\nClick 'OK' to continue with delete.",
+   delete_task_msg: "删除操作将是永久性的.\n\n确认要删除吗？",
+   delete_list_msg: "删除操作将是永久性的.\n\n确认要删除吗？",
    action_postfix: '_tasklist',
    current_action: null,
 

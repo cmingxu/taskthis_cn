@@ -53,7 +53,7 @@ class Tasklist < ActiveRecord::Base
 	      # yes, I realize I didn't need to incomplete count to get the percentage
 	      ((complete / total) * 100).to_i
 	   else
-	      0
+	      100
       end
 	end
 

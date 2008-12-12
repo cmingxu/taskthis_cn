@@ -10,13 +10,7 @@
 <h1>任务列表</h1>
 <hr>
 	<%= render :partial=>'/account/user_profile', :locals=>{ :user=>@user } %>
-	<% form_remote_tag( :url        => url_for( :controller=>'tasklist', :action=>'update_tasklist_vis', :id=>current_user.id ),
-	                     :html       => { :id => "tasklist-form" },
-	                     :loading    => "Profile.on_tasklists_save_loading()",
-	                     :complete   => "Profile.on_tasklists_save_complete(request)"
-	) do %>
-	    <%= render :partial=>'/shared/tasklists', :object => @user_tasklists, :locals=>{:is_public=>@is_public} %>
-	    <br />
-	    <%= image_tag "wait.gif", :id=>'tasklist_loading', :style=>'display:none' %>
-	<% end %>
+	<div class="form">
+    	<%= render :partial=>'/shared/tasklists', :object => @user_tasklists, :locals=>{:is_public=>@is_public} %>
+	</div>
 <% end %>
